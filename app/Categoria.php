@@ -1,0 +1,27 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Categoria extends Model
+{
+    
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'nombre'
+    ];
+
+    /**
+     * Relacion con la tabla Articulos
+     * 
+     * @return \App\Articulo
+     */
+    public function articulos(){
+        return $this->hasMany(\App\Articulo::class);
+    }
+}
