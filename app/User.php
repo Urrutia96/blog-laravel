@@ -34,6 +34,6 @@ class User extends Authenticatable
      * @return \App\Articulo
      */
     public function articulos(){
-        return $this->hasMany(\App\Articulo::class);
+        return $this->hasMany('App\Articulo');
     }
 }

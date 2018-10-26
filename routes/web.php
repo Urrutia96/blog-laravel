@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/categoria/{categoria}', 'HomeController@categoria')->name('categoria');
+Route::get('/usuario/{user}','HomeController@user')->name('user');
+Route::get('/admin',function(){
+    return "adsasd";
 });
+Route::get('/{slug?}', 'HomeController@index')->name('home');
