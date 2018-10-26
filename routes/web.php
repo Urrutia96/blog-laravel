@@ -14,7 +14,8 @@
 
 Route::get('/categoria/{categoria}', 'HomeController@categoria')->name('categoria');
 Route::get('/usuario/{user}','HomeController@user')->name('user');
-Route::get('/admin',function(){
-    return "adsasd";
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', 'AdminController@index')->name('index');
+    
 });
 Route::get('/{slug?}', 'HomeController@index')->name('home');

@@ -69,7 +69,7 @@
                         $contador++;    
                       @endphp
                                 <li>
-                                    <a href="{{ route('home',$categoria->nombre) }}">{{ ucwords($categoria->nombre) }}</a>
+                                    <a href="{{ route('categoria',$categoria->nombre) }}">{{ ucwords($categoria->nombre) }}</a>
                                 </li>
                       @if($contador==2)
                             </ul>
@@ -89,9 +89,10 @@
   
             <!-- Side Widget -->
             <div class="card my-4">
-              <h5 class="card-header">Side Widget</h5>
+              <h5 class="card-header">Santos Osmin Urrutia</h5>
               <div class="card-body">
-                You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                Creador de este blog, programador para <a href="https:\\bolsainmobiliaria.pe">Bolsa Inmobiliaria</a>,
+                me gusta estudiar constantemente y aprender cosas nuevas.
               </div>
             </div>
   

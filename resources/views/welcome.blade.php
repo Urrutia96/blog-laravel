@@ -1,6 +1,16 @@
 @extends('layouts.layout')
 
-@section('title','Blog Laravel')
+@php
+if(isset($categoria)){
+  $title = ucwords($categoria->nombre) . " | Blog Laravel";
+}elseif(isset($user)){
+  $title = ucwords($user->name) . " | Blog Laravel";
+}else{
+  $title = "Blog Laravel";
+}
+@endphp
+
+@section('title', $title )
 
 @section('css')
 
@@ -36,7 +46,6 @@
         </div>
       </div>
       @endforeach
-
       <!-- Pagination -->
       <ul class="pagination justify-content-center mb-4">
         <li class="page-item">

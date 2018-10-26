@@ -46,7 +46,7 @@ class HomeController extends Controller
     public function user(Request $request){
         $user = User::where('nickname',$request->user)->first();
         $categorias = Categoria::select('nombre','id')->get();
-        $articulos = $user->articulos;
+        $articulos = $user->articulos()->paginate(1);
         return view('welcome', compact('categorias','articulos','user'));
     }
 }
