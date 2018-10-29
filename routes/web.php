@@ -16,6 +16,10 @@ Route::get('/categoria/{categoria}', 'HomeController@categoria')->name('categori
 Route::get('/usuario/{user}','HomeController@user')->name('user');
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', 'AdminController@index')->name('index');
-    
+    Route::get('/new','AdminController@formPost')->name('new');
+    Route::post('/new', 'AdminController@store')->name('store');
+    Route::get('/edit/{id}', 'AdminController@formPost')->name('showEdit');
+    Route::post('/edit/{id?}', 'AdminController@edit')->name('edit');
+    Route::get('/delete/{id}','AdminController@delete')->name('delete');
 });
 Route::get('/{slug?}', 'HomeController@index')->name('home');

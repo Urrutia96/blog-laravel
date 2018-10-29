@@ -32,6 +32,10 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ route('admin.index') }}">Dashboard
+              </a>
+            </li>
           </ul>
         </div>
       </div>

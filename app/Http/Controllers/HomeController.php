@@ -22,7 +22,7 @@ class HomeController extends Controller
             $articulo = Articulo::where('slug',$request->slug)->first();            
             return view('detalles',compact('categorias','articulo'));
         }
-        $articulos = Articulo::with('categoria','user')->paginate(3);
+        $articulos = Articulo::with('categoria','user')->paginate(4);
         return view('welcome', compact('categorias','articulos'));
     }
 
@@ -46,7 +46,7 @@ class HomeController extends Controller
     public function user(Request $request){
         $user = User::where('nickname',$request->user)->first();
         $categorias = Categoria::select('nombre','id')->get();
-        $articulos = $user->articulos()->paginate(1);
+        $articulos = $user->articulos()->paginate(4);
         return view('welcome', compact('categorias','articulos','user'));
     }
 }

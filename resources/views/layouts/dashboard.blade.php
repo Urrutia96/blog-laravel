@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Material Kit CSS -->
   <link href="{{ asset('css/dashboard/material-dashboard.css?v=2.1.0') }}" rel="stylesheet" />
+
+  @yield('css')
+
 </head>
 
 <body class="dark-edition">
@@ -23,7 +26,7 @@
       Tip 2: you can also add an image using data-image tag
   -->
       <div class="logo">
-        <a href="{{ route('admin.index') }}" class="simple-text logo-normal">
+        <a href="{{ route('home') }}" class="simple-text logo-normal">
           Blog Laravel
         </a>
       </div>
@@ -90,6 +93,9 @@
       </footer>
     </div>
   </div>
+
+
+  @yield('scripts')
  
 </body>
 
