@@ -14,5 +14,5 @@ Blog hecho con Laravel
 * Ejecutar comando **php artisan migrate --seed**
 * corre tu servidor **php artisan serve**
 * login
-    * email: santos96@test.com
+    * email: urrutia96@test.com
     * password: 123456

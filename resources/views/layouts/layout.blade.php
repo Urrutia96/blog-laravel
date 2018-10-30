@@ -119,7 +119,7 @@
 		<!-- Footer -->
 		<footer class="py-5 bg-dark">
 			<div class="container">
-				<p class="m-0 text-center text-white">Santos96</p>
+				<p class="m-0 text-center text-white">urrutia96</p>
 			</div>
 			<!-- /.container -->
 		</footer>
