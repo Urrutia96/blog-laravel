@@ -1,5 +1,9 @@
 <?php
 
+use App\Notifications\ArticuloPublicado;
+use App\Articulo;
+use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,10 +15,15 @@
 |
 */
 
-
+Route::get('/not', function () {
+    Auth::user()->notify(new ArticuloPublicado(Articulo::first()));
+});
+Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login','Auth\LoginController@login');
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/categoria/{categoria}', 'HomeController@categoria')->name('categoria');
 Route::get('/usuario/{user}','HomeController@user')->name('user');
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', 'AdminController@index')->name('index');
     Route::get('/new','AdminController@formPost')->name('new');
     Route::post('/new', 'AdminController@store')->name('store');

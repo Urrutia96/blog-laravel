@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Categoria;
 use App\Articulo;
+use App\Notifications\ArticuloPublicado;
 
 class AdminController extends Controller
 {
@@ -45,11 +46,15 @@ class AdminController extends Controller
         $articulo = new Articulo();
         $articulo->titulo = $request->titulo;
         $articulo->categoria_id = $request->categoria;
-        $articulo->user_id = 1;
+        $articulo->user_id = \Auth::user()->id;
         $articulo->slug = str_slug($request->titulo,'-');
         $articulo->img = $request->file('img')->store('/public/articulos');
         $articulo->cuerpo = $request->cuerpo;
         if($articulo->save()){
+            $users = User::all();
+            foreach($users as $user){
+                $user->notify(new ArticuloPublicado($articulo));
+            }
             return redirect()->route('admin.index')->with('message', 'Articulo publicado correctamente');
         }
         return redirect()->route('admin.new')->withInput()->with('message','Porfavor revise bien los datos'); 
@@ -64,13 +69,14 @@ class AdminController extends Controller
         $articulo = Articulo::where('id', $request->id)->first();
         $articulo->titulo = $request->titulo;
         $articulo->categoria_id = $request->categoria;
-        $articulo->user_id = 1;
+        $articulo->user_id = \Auth::user()->id;
         $articulo->slug = str_slug($request->titulo,'-');
         if($request->hasFile('img')){
             $articulo->img = $request->file('img')->store('/public/articulos');
         }
         $articulo->cuerpo = $request->cuerpo;
         if($articulo->save()){
+            
             return redirect()->route('admin.index')->with('message', 'Articulo Modificado correctamente');
         }
         return redirect()->route('admin.showEdit',$articulo->id)->withInput()->with('message','Porfavor revise bien los datos');

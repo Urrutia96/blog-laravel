@@ -11,14 +11,17 @@ class ArticuloPublicado extends Notification
 {
     use Queueable;
 
+    private $articulo;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($articulo)
     {
         //
+        $this->articulo = $articulo;
     }
 
     /**
@@ -56,7 +59,9 @@ class ArticuloPublicado extends Notification
     {
         return [
             //
-            $this->articulo->titulo
+            'mesaje' => 'Nuevo articulo en el blog',
+            'titulo' => $this->articulo->titulo, 
+            'link' => route('home',$this->articulo->slug)
         ];
     }
 }

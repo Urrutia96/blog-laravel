@@ -47,7 +47,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+            <a class="navbar-brand" href="javascript:void(0)">{{ Auth::user()->name }}</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -57,14 +57,20 @@
           </button>
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">
-                  <i class="material-icons">notifications</i>
-                  <p class="d-lg-none d-md-block">
-                    Notifications
-                  </p>
-                </a>
-              </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="javscript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">notifications</i>
+                    <span class="notification">{{ count(Auth::user()->unreadNotifications) }}</span>
+                    <p class="d-lg-none d-md-block">
+                      Some Actions
+                    </p>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    @foreach(Auth::user()->unreadNotifications as $notification)
+                    <a class="dropdown-item" target="_blank" href="{{ $notification['data']['link'] }}">{{ $notification['data']['mesaje'] }}: {{ $notification['data']['titulo'] }}</a>
+                    @endforeach
+                  </div>
+                </li>
               <!-- your navbar here -->
             </ul>
           </div>
@@ -94,6 +100,15 @@
     </div>
   </div>
 
+
+   <!--   Core JS Files   -->
+   <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
+   <script src="{{ asset('js/dashboard/core/popper.min.js') }}"></script>
+   <script src="{{ asset('js/dashboard/core/bootstrap-material-design.min.js') }}"></script>
+   <script src="https://unpkg.com/default-passive-events"></script>
+   <script src="{{ asset('js/dashboard/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+   <script src="{{ asset('js/dashboard/plugins/bootstrap-notify.js') }}"></script>
+  <script src="{{ asset('js/dashboard/material-dashboard.js?v=2.1.0') }}"></script>
 
   @yield('scripts')
  

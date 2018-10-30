@@ -19,10 +19,13 @@ class HomeController extends Controller
     public function index(Request $request){
         $categorias = Categoria::select('nombre','id')->get();
         if($request->slug){
-            $articulo = Articulo::where('slug',$request->slug)->first();            
-            return view('detalles',compact('categorias','articulo'));
+            $articulo = Articulo::where('slug',$request->slug)->first();
+            if($articulo){
+                return view('detalles',compact('categorias','articulo'));
+            }
+            return abort(404);
         }
-        $articulos = Articulo::with('categoria','user')->paginate(4);
+        $articulos = Articulo::with('categoria','user')->orderBy('id','DESC')->paginate(4);
         return view('welcome', compact('categorias','articulos'));
     }
 
