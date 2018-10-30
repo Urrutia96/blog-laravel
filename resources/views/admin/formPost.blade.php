@@ -28,7 +28,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="bmd-label-floating">Titulo</label>
-                        <input type="text" class="form-control" name="titulo" value="{{ isset($articulo->titulo) ? $articulo->titulo: ""}}">
+                        <input required type="text" class="form-control" name="titulo" value="{{ isset($articulo->titulo) ? $articulo->titulo: ""}}">
                     </div>
                 </div>
             </div>
@@ -39,12 +39,12 @@
                     </div>
                 </div>
             </div>
-            <input type="file" id="img" name="img" class="form-control" accept="image/png, image/jpeg" />
+            <input required type="file" id="img" name="img" class="form-control" accept="image/png, image/jpeg" />
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="bmd-label-floating">Categoria</label>
-                        <select class="form-control" name="categoria">
+                        <select class="form-control" name="categoria" required>
                             @foreach($categorias as $categoria)
                             <option value="{{ $categoria->id }}" {{ isset($articulo->titulo) ? $articulo->categoria->nombre==$categoria->nombre?'selected':'' : ""}}>{{ ucwords($categoria->nombre) }}</option>
                             @endforeach
@@ -58,7 +58,7 @@
                   <label>Cuerpo</label>
                   <div class="form-group">
                     <label class="bmd-label-floating"></label>
-                    <textarea class="form-control" rows="5" name="cuerpo">{{ isset($articulo->cuerpo) ? $articulo->cuerpo: ""}}</textarea>
+                    <textarea class="form-control" required rows="5" name="cuerpo">{{ isset($articulo->cuerpo) ? $articulo->cuerpo: ""}}</textarea>
                   </div>
                 </div>
               </div>
